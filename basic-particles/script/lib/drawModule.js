@@ -19,6 +19,10 @@ const draw = (() => { // const draw = (function() {
         return ctx;
     }
 
+    const clearArea = () => {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    }
+
     const circle = (x, y, { size, color }) => {
         // x, y coordinaten
         // s size
@@ -35,6 +39,7 @@ const draw = (() => { // const draw = (function() {
     return {
         setup,
         circle,
+        clearArea,
     };
 })();
 
