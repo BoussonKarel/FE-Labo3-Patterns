@@ -23,8 +23,9 @@
 
         // Oefening 2: particles renderen op ons scherm
         const ctx = draw.setup(canvasElement);
-        const particles = sparks.generate(ctx, 200);
+        const particles = sparks.generate(ctx, 500);
         console.table(particles);
         sparks.animate(ctx, particles);
+        sparks.enableMouseListener();
     })    
 })();

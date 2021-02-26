@@ -17,5 +17,6 @@ body {
 }
 
 canvas {
-    background-color: var(--global-theme-color-base);
+    /* background-color: var(--global-theme-color-base); */
+    cursor: crosshair;
 }

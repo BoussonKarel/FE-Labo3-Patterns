@@ -1,15 +1,22 @@
 const sparks = (function() {
     colors = ['gold', 'peachpuff', 'lime', 'deepskyblue', 'hotpink'];
 
+    const cursor = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+    }
+
     const generateSpark = (ctx) => {
-        const maxVelocity = 5;
+        const maxVelocity = Math.random()*10;
 
         // Size genereren
         // Random x en y value genereren
         // Kleur kiezen
         const size = Math.floor(Math.random() * 15) + 5,
-        x = Math.round(Math.random() * (ctx.canvas.width - size * 2)) + size,
-        y = Math.round(Math.random() * (ctx.canvas.height - size * 2)) + size,
+        // x = Math.round(Math.random() * (ctx.canvas.width - size * 2)) + size,
+        // y = Math.round(Math.random() * (ctx.canvas.height - size * 2)) + size,
+        x = cursor.x,
+        y = cursor.y,
         color = colors[Math.floor(Math.random() * colors.length)];
 
         // Wiskunde uuhhhh 🔢
@@ -90,10 +97,18 @@ const sparks = (function() {
         });
     }
 
+    const enableMouseListener = () => {
+        document.addEventListener('mousemove', function(e) {
+            cursor.x = e.clientX;
+            cursor.y = e.clientY;
+        });
+    }
+
     return {
         // Ik hernoemd de functie intern, naar een andere value extern
         animate: animateParticles,
         generate: generateSparks,
         render: renderSparks,
+        enableMouseListener
     }
 })();
