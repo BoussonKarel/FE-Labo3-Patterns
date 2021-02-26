@@ -5,8 +5,8 @@ const draw = (() => { // const draw = (function() {
 
     // Ready to reuse
     const matchCanvasToWindow = (canvasElement) => {
-        canvasElement.width = window.innerWidth;
-        canvasElement.height = window.innerHeight;
+        canvasElement.width = document.documentElement.clientWidth;  
+        canvasElement.height = document.documentElement.clientHeight;
     }
 
     const setup = (canvasElement) => {
@@ -16,6 +16,7 @@ const draw = (() => { // const draw = (function() {
 
         matchCanvasToWindow(canvasElement);
         ctx = canvasElement.getContext('2d');
+        return ctx;
     }
 
     const circle = (x, y, { size, color }) => {
@@ -23,7 +24,7 @@ const draw = (() => { // const draw = (function() {
         // s size
 
         // We tekenen altijd op een context!
-        console.log({ctx})
+        // console.log({ctx})
 
         ctx.beginPath();
         ctx.fillStyle = color;

@@ -1,5 +1,5 @@
 :root {
-    --global-theme-color-base: hsl(216, 50%, 40%);
+    --global-theme-color-base: hsl(216, 100%, 96%);
 }
 
 html,
@@ -16,6 +16,6 @@ body {
     overflow: hidden;
 }
 
-/* canvas {
-    background-color: #fff;
-} */
+canvas {
+    background-color: var(--global-theme-color-base);
+}
