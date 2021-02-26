@@ -3,7 +3,8 @@ const sparks = (function() {
 
     const generateSparks = (ctx, amount) => {
         // TODO: maak x keer een spark aan op een random positie in het canvas
-        const sparks = [];
+        const sparks = [],
+        maxVelocity = 5;
 
         // Sparks 1 per 1 genereren
         for (let i = 0; i < amount; i++) {
@@ -23,10 +24,10 @@ const sparks = (function() {
 
             sparks.push(
                 new Spark({
-                    x:x,
-                    y:y,
-                    dX:0,
-                    dY:0,
+                    x: x,
+                    y: y,
+                    dX: Math.floor(Math.random() * (maxVelocity * 2)) - maxVelocity,
+                    dY: Math.floor(Math.random() * (maxVelocity * 2)) - maxVelocity,
                     size: size,
                     color: color
                     // Size en color laten we momenteel default
@@ -45,8 +46,41 @@ const sparks = (function() {
         }
     }
 
+    const animateParticles = (ctx, particlesArray) => {
+        draw.clearArea();
+
+        // s = spark
+        for (const p of particlesArray) {
+			p.x = p.x + p.dX;
+			p.y = p.y + p.dY;
+ 
+			if (p.x <= p.size / 2) {
+				p.dX = p.dX * -1;
+			}
+ 
+			if (p.y <= p.size / 2) {
+				p.dY = p.dY * -1;
+			}
+ 
+			if (p.x >= ctx.canvas.width - p.size) {
+				p.dX = p.dX * -1;
+			}
+ 
+			if (p.y >= ctx.canvas.height - p.size) {
+				p.dY = p.dY * -1;
+			}
+		}
+
+        renderSparks(particlesArray);
+
+        requestAnimationFrame(() => {
+            animateParticles(ctx, particlesArray);
+        });
+    }
+
     return {
         // Ik hernoemd de functie intern, naar een andere value extern
+        animate: animateParticles,
         generate: generateSparks,
         render: renderSparks,
     }
