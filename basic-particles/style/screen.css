@@ -1,0 +1,21 @@
+:root {
+    --global-theme-color-base: hsl(216, 50%, 40%);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: var(--global-theme-color-base);
+}
+
+body {
+    overflow: hidden;
+}
+
+/* canvas {
+    background-color: #fff;
+} */
